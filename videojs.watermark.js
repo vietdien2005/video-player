@@ -70,23 +70,23 @@
 
     if ((options.ypos === 0) && (options.xpos === 0)) // Top left
     {
-      div.style.top = "0";
-      div.style.left = "0";
+      div.style.top = "15";
+      div.style.left = "15";
     }
     else if ((options.ypos === 0) && (options.xpos === 100)) // Top right
     {
-      div.style.top = "0";
-      div.style.right = "0";
+      div.style.top = "15";
+      div.style.right = "15";
     }
     else if ((options.ypos === 100) && (options.xpos === 100)) // Bottom right
     {
-      div.style.bottom = "0";
-      div.style.right = "0";
+      div.style.bottom = "15";
+      div.style.right = "15";
     }
     else if ((options.ypos === 100) && (options.xpos === 0)) // Bottom left
     {
-      div.style.bottom = "0";
-      div.style.left = "0";
+      div.style.bottom = "15";
+      div.style.left = "15";
     }
     else if ((options.ypos === 50) && (options.xpos === 50)) // Center
     {
