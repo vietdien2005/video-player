@@ -1,0 +1,48 @@
+<head>
+  <link href="http://vjs.zencdn.net/5-unsafe/video-js.css" rel="stylesheet">
+  <link href="videojs.watermark.css" rel="stylesheet">
+  <!-- If you'd like to support IE8 -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="http://vjs.zencdn.net/5-unsafe/video.js"></script>
+  <script src="videojs.watermark.js"></script>
+  <style> 
+  	.wrapper { padding-bottom: 50px; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+ 	<div class="videocontent">
+	  	<video id="video_1" class="video-js vjs-fluid vjs-big-play-centered" controls preload="auto" poster='http://cdn.static.tuoitre.vn/i/s639/2016/08/j6094c3F.jpg' data-setup='{ "aspectRatio":"16:9", "fluid" : true}'>
+	    	<source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
+	  	</video>
+	  	<script>
+			videojs('video_1').watermark({
+				file: 'http://tv.tuoitre.vn/assets/91f43ba3/images/logo-tvo.png',
+				xpos: 100,
+				ypos: 0,
+				xrepeat: 0,
+				opacity: 0.5,
+				url: "http://tuoitre.vn/"
+			});
+		</script>
+   	</div>
+</div>
+
+<div class="wrapper">
+ 	<div class="videocontent">
+		<video id="video_2" class="video-js vjs-fluid vjs-big-play-centered" controls preload="auto" poster='http://cdn.static.tuoitre.vn/i/s639/2016/08/j6094c3F.jpg' data-setup='{ "aspectRatio":"16:9", "fluid" : true}'>
+    		<source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
+  		</video>
+	  	<script>
+			videojs('video_2').watermark({
+				file: 'http://static.new.tuoitre.vn/assets/tto/c6f6b489v691/images/logo.png',
+				xpos: 100,
+				ypos: 0,
+				xrepeat: 0,
+				opacity: 0.5,
+				url: "http://tuoitre.vn/"
+			});
+		</script>
+ 	</div>
+</div>
+</body>
