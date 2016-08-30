@@ -1,12 +1,32 @@
 <head>
   <link href="http://vjs.zencdn.net/5-unsafe/video-js.css" rel="stylesheet">
   <link href="videojs.watermark.css" rel="stylesheet">
-  <title> VideoJS - Watermark </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title> VideoJS </title>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="http://vjs.zencdn.net/5-unsafe/video.js"></script>
   <script src="videojs.watermark.js"></script>
   <style> 
   	.wrapper { padding-bottom: 50px; }
+  	.videojs-rightclick {
+	    z-index: 1000;
+	    position: absolute;
+	    background-color: black;
+	    color: white !important;
+	    padding: 8px;
+	    margin: 0;
+	    font-size: 12px;
+	    text-align: left;
+	    border: 0;
+	}
+
+	.videojs-rightclick a {
+	    color: white !important;
+	}
+
+	.videojs-rightclick a:hover {
+	    color: white !important;
+	}
   </style>
 </head>
 <body>
@@ -82,4 +102,16 @@
   		</video>
  	</div>
 </div>
+<script>
+	$("video").bind("contextmenu", function(event) { 
+    if($(".videojs-rightclick").length) $("div.videojs-rightclick").remove();
+    event.preventDefault();
+    $('<div class="videojs-rightclick"><a href="http://tuoitre.vn">© Copyright 2016 vietdien2005</a></div>')
+        .appendTo("body")
+        .css({top: event.pageY + "px", left: event.pageX + "px"});
+    }).bind("click", function(event) {
+        $("div.videojs-rightclick").remove();
+    });
+    $(document).on("click",function(event) {  $("div.videojs-rightclick").remove(); });
+</script>
 </body>
