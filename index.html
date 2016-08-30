@@ -12,11 +12,11 @@
 <body>
 <div class="wrapper">
  	<div class="videocontent">
-	  	<video id="video_1" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/08/j6094c3F.jpg' data-setup='{ "aspectRatio":"16:9", "fluid" : true}'>
+	  	<video id="video_1" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/08/j6094c3F.jpg' preload="auto" controls data-setup='{ "aspectRatio":"16:9", "fluid" : true}'>
 	    	<source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
 	  	</video>
 	  	<script>
-			videojs('video_1', { "controls": true, "autoplay": false, "preload": "auto" }).watermark({
+			videojs('video_1').watermark({
 				file: 'logo_100.png',
 				xpos: 100,
 				ypos: 0,
@@ -42,6 +42,44 @@
 				url: "http://tuoitre.vn/"
 			});
 		</script>
+ 	</div>
+</div>
+<div class="wrapper">
+ 	<div class="videocontent">
+	  	<video id="video_1" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/08/j6094c3F.jpg' data-setup='{ 
+	  		"aspectRatio":"16:9", 
+	  		"preload": "auto",
+	  		"controls": true,
+	  		"fluid" : true,
+	  		"plugins": { 
+                "watermark": { 
+                	"file": "http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png", 
+                	"xpos": "100", 
+                	"ypos": "0", 
+                	"url": "http://tuoitre.vn/" 
+                } 
+            } 
+	  	}'>
+	    	<source src="http://cdn.static.tuoitre.vn/2016/08/XBTAgft1.mp4" type='video/mp4' />
+	  	</video>
+   	</div>
+</div>
+<div class="wrapper">
+ 	<div class="videocontent">
+		<video id="video_2" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/08/j6094c3F.jpg' preload="auto" controls data-setup='{ 
+			"aspectRatio":"16:9", 
+			"fluid" : true,
+			"plugins": { 
+                "watermark": { 
+                	"file": "http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png", 
+                	"xpos": "100", 
+                	"ypos": "0", 
+                	"url": "http://tuoitre.vn/" 
+                } 
+            } 
+		}'>
+    		<source src="http://cdn.static.tuoitre.vn/2016/08/XBTAgft1.mp4" type='video/mp4' />
+  		</video>
  	</div>
 </div>
 </body>
