@@ -28,4 +28,6 @@
     z-index: 2000;
 }
 
-video::-webkit-media-controls {display: none !important}
+*::-webkit-media-controls {
+  	display:none !important;
+}
