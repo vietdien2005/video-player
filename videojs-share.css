@@ -1,0 +1,58 @@
+.vjs-social-share {
+  height: 40px;
+  opacity: 0;
+  position: absolute;
+  right: 30px;
+  text-align: center;
+  top: 14px;
+  -webkit-transition: opacity .3s ease-in-out;
+  transition: opacity .3s ease-in-out;
+  width: auto;
+  z-index: 999;
+}
+.vjs-social-share.is-visible,
+.vjs-social-share:hover {
+  opacity: 1;
+}
+.vjs-social-share-link {
+  border: none;
+  cursor: pointer;
+  display: inline;
+  height: 30px;
+  margin-right: 10px;
+  position: relative;
+  width: 30px;
+  z-index: 2000;
+}
+.vjs-social-share-link:last-of-type {
+  margin-right: 0;
+}
+.vjs-social-share-svg {
+  height: 30px;
+  width: 30px;
+}
+
+#video_overlays {
+  position:absolute;
+  float:left;
+  background-color:#333;
+  z-index:3000;
+}
+.videoContainer {
+    position: relative;
+    width: 100%;
+    /* height: 100%; */
+    overflow: hidden;
+}
+
+.videoContainer .overlay {
+  /* display: none; */
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  background: #333;
+  opacity: 0.8;
+}
