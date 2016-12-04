@@ -10,11 +10,11 @@
 </head>
 <body>
 <div class="wrapper" style="width:490; padding-top: 20px; margin:0 auto;">
- 	<div class="videocontent">
-		<video id="video_media" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
-    		<source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4'/>
-  		</video>
- 	</div>
+  <div class="videocontent">
+    <video id="video_media" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
+        <source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4'/>
+      </video>
+  </div>
 </div>
 <script>
 var video_media_ads = {
@@ -27,7 +27,7 @@ var video_media_ads = {
     'adMidTimeout':  0,
 }
 videojs('video_media',{aspectRatio:'16:9',controls:true,autoplay:true,preload:'auto',fluid:true},function(){
-	var player = this;
+  var player = this;
     player.on('pause', function () { $('#video_media .vjs-big-play-button').show(); });
     player.on('play', function () { $('#video_media .vjs-big-play-button').hide(); }); 
     var options = video_media_ads;
