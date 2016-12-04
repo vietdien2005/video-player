@@ -20,17 +20,18 @@
 var video_media_ads = {
     'adPreUrl': 'http://viecit.co/api/index.php?in&v&a&c1VVS29KVFVIaWc9',
     'adPreEnabled' : true,
-    'adPreTimeout' : 20000,
+    'adPreTimeout' : 0,
     'adMidUrl': 'http://viecit.co/api/index.php?in&v&a&cFU0SkZyZmNoeTA9',
     'adMidEnabled' : true,
     'adMidStartTime': '00:00:05',
-    'adMidTimeout':  20000,
+    'adMidTimeout':  0,
 }
 videojs('video_media',{aspectRatio:'16:9',controls:true,autoplay:true,preload:'auto',fluid:true},function(){
 	var player = this;
     player.on('pause', function () { $('#video_media .vjs-big-play-button').show(); });
     player.on('play', function () { $('#video_media .vjs-big-play-button').hide(); }); 
     var options = video_media_ads;
+    var isEnabledVast = false;
     convertTime=function(time){var a = time.split(':');return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);}
     callAd = function (url, timeout) {
         var vastAd = player.vastClient({
@@ -40,39 +41,35 @@ videojs('video_media',{aspectRatio:'16:9',controls:true,autoplay:true,preload:'a
             autoResize: true,
             vpaidFlashLoaderPath: ''
         });
-        return vastAd;
     }
     playAdbyTime = function (time, url, timeout) {
+        isEnabledVast = true;
         player.pause();
-        $('.vjs-control-bar').addClass('vjs-disable');
+        // $('.vjs-control-bar').css('display','none');
         callAd(url, timeout);
         player.play();
         player.on('vast.contentStart', function (e) {
             player.pause();
-            $('.vjs-control-bar').removeClass('vjs-disable');
+            // $('.vjs-control-bar').css('display','');
             player.currentTime(time);
             player.play();
+            isEnabledVast = false;
         });
+        return true;
     }
-    var isMidroll = 0;
+    var isPreroll = isMidroll = false;
     player.on('timeupdate', function(e) {
+        if (!isPreroll && player.currentTime() >= 0 && options.adPreEnabled == true && !isEnabledVast) {
+            isPreroll = playAdbyTime(0, options.adPreUrl, options.adPreTimeout);
+        }
         if (options.adMidEnabled == true) {
             var startTime = convertTime(options.adMidStartTime);
-            if (isMidroll == 0 && player.currentTime() >= startTime && options.adMidEnabled == true) {
-                isMidroll = 1;
-                playAdbyTime(startTime, options.adMidUrl, options.adMidTimeout);
+            if (!isMidroll && player.currentTime() >= startTime && options.adMidEnabled == true && !isEnabledVast) {
+                isMidroll = playAdbyTime(startTime, options.adMidUrl, options.adMidTimeout);
             }
         }
     });
-    var isPreroll = 0;
-    player.on('timeupdate', function(e) {
-        if (isPreroll == 0 && player.currentTime() >= 0 && options.adPreEnabled == true) {
-            isPreroll = 1;
-            playAdbyTime(0, options.adPreUrl, options.adPreTimeout);
-        }
-    });
-    
-}).watermark({file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',xpos:100,ypos:0,url:'http://tuoitre.vn/'});
+}).watermark({file:'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',xpos:100,ypos:0,url:'http://tuoitre.vn/'});
 
 </script>
 </body>
