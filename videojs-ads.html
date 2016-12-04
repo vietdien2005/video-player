@@ -9,27 +9,28 @@
   <script src="js/videojs_5.vast.vpaid.min.js"></script>
 </head>
 <body>
-<div class="wrapper" style="width:880; padding-top: 20px; margin:0 auto;">
+<div class="wrapper" style="width:490; padding-top: 20px; margin:0 auto;">
  	<div class="videocontent">
-		<video id="video_media" class="video-js vjs-fluid vjs-big-play-centered" data-setup='{}'>
-    		<source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4' />
+		<video id="video_media" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
+    		<source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4'/>
   		</video>
  	</div>
 </div>
 <script>
+var video_media_ads = {
+    'adPreUrl': 'http://viecit.co/api/index.php?in&v&a&c1VVS29KVFVIaWc9',
+    'adPreEnabled' : true,
+    'adPreTimeout' : 20000,
+    'adMidUrl': 'http://viecit.co/api/index.php?in&v&a&cFU0SkZyZmNoeTA9',
+    'adMidEnabled' : true,
+    'adMidStartTime': '00:00:05',
+    'adMidTimeout':  20000,
+}
 videojs('video_media',{aspectRatio:'16:9',controls:true,autoplay:true,preload:'auto',fluid:true},function(){
 	var player = this;
     player.on('pause', function () { $('#video_media .vjs-big-play-button').show(); });
     player.on('play', function () { $('#video_media .vjs-big-play-button').hide(); }); 
-    var options = {
-        'adMidUrl': 'http://delivery.senvangvn.com/vast/tto.ashx?pos=mid-1',
-        'adMidEnabled' : true,
-        'adMidStartTime': '00:00:10',
-        'adMidTimeout':  20000,
-        'adPreUrl': 'http://delivery.senvangvn.com/vast/tto.ashx?pos=mid-1',
-        'adPreEnabled' : true,
-        'adPreTimeout' : 20000
-    }
+    var options = video_media_ads;
     convertTime=function(time){var a = time.split(':');return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);}
     callAd = function (url, timeout) {
         var vastAd = player.vastClient({
@@ -43,12 +44,12 @@ videojs('video_media',{aspectRatio:'16:9',controls:true,autoplay:true,preload:'a
     }
     playAdbyTime = function (time, url, timeout) {
         player.pause();
-        // $('.vjs-control-bar').addClass('vjs-disable');
+        $('.vjs-control-bar').addClass('vjs-disable');
         callAd(url, timeout);
         player.play();
         player.on('vast.contentStart', function (e) {
             player.pause();
-            // $('.vjs-control-bar').removeClass('vjs-disable');
+            $('.vjs-control-bar').removeClass('vjs-disable');
             player.currentTime(time);
             player.play();
         });
@@ -70,6 +71,7 @@ videojs('video_media',{aspectRatio:'16:9',controls:true,autoplay:true,preload:'a
             playAdbyTime(0, options.adPreUrl, options.adPreTimeout);
         }
     });
+    
 }).watermark({file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',xpos:100,ypos:0,url:'http://tuoitre.vn/'});
 
 </script>
