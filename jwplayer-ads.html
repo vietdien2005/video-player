@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="jwplayer/jwplayer.js"></script>
+    <script type="text/javascript">
+    jwplayer.key = "yl/yqfTaFkHTZsvJEK6NtJYZZujiAxc3knwh";
+    </script>
+</head>
+
+<body>
+    <div id="video-wrapper"> </div>
+    <script>
+    jwplayer('video-wrapper').setup({
+        file: 'http://cdn.static.tuoitre.vn/2016/10/CPmfXUSc.mp4',
+        image: 'http://cdn.static.tuoitre.vn/i/s639/2016/10/zVB5Nqi0.jpg',
+        width: '590',
+        height: '331',
+        autostart: true,
+        advertising: {
+            client: 'vast',
+            skiptext: 'Bỏ qua',
+            skipmessage: 'Bỏ qua sau xx giây',
+            schedule: {
+                "popup0": {
+                    "offset": "120",
+                    "type": "nonlinear",
+                    "tag": "http://adserver.dev/api/index.php?in&v&a&2"
+                },
+                "popup1": {
+                    "offset": "3",
+                    "type": "nonlinear",
+                    "tag": "http://adserver.dev/api/index.php?in&v&a&2"
+                },
+                "mid0": {
+                    "offset": "1",
+                    "tag": "http://adserver.dev/api/index.php?in&v&a&1"
+                },
+                "mid1": {
+                    "offset": "4",
+                    "tag": "http://adserver.dev/api/index.php?in&v&a&1"
+                },
+                "mid2": {
+                    "offset": "8",
+                    "tag": "http://adserver.dev/api/index.php?in&v&a&1"
+                }
+            }
+
+        }
+    });
+    </script>
+</body>
+
+</html>

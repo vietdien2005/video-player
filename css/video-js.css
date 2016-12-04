@@ -1643,3 +1643,7 @@ video::-webkit-media-text-track-display {
   display: none!important;
   -webkit-appearance: none;
 }
+
+.video-js .vjs-progress-control:hover .vjs-play-progress:after {
+  display: none;
+}

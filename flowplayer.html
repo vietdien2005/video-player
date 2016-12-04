@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Flowplayer · VAST plugin</title>
+    <!-- optimize mobile versions -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The "functional" skin - choose from: "functional.css", "minimalist.css", "playful.css" -->
+    <link rel="stylesheet" href="flowplayer/skin/functional.css">
+   
+    <style>
+    .flowplayer {
+        background-color: #036;
+        /* allow room for playlist buttons */
+        margin-bottom: 100px;
+    }
+    
+    .flowplayer .fp-playlist {
+        position: absolute;
+        bottom: -100px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .flowplayer .fp-playlist a {
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+        border-radius: 70px;
+        background-color: #666;
+        margin: 15px;
+    }
+    
+    .flowplayer .fp-playlist a.is-active {
+        background-color: #eee;
+    }
+    
+    .flowplayer.is-paused .fp-playlist a.is-active {
+        background-color: #ccc;
+    }
+    
+    .flowplayer .fp-prev,
+    .flowplayer .fp-next {
+        position: absolute;
+        bottom: -60px;
+        font-size: 20px;
+        display: none;
+        z-index: 1;
+        cursor: pointer;
+    }
+    
+    .flowplayer .fp-next {
+        right: 0;
+    }
+    
+    .flowplayer.is-ready .fp-next,
+    .flowplayer.is-ready .fp-prev {
+        display: inline;
+    }
+    
+    .flowplayer {
+        background-size: 95%;
+        background-color: #6496ff;
+        -webkit-box-shadow: 0 0 20px #b8b8b8;
+        -moz-box-shadow: 0 0 20px #b8b8b8;
+        box-shadow: 0 0 20px #b8b8b8;
+    }
+    </style>
+    <!-- Flowplayer library -->
+    <script src="flowplayer/flowplayer.min.js"></script>
+    <!-- load VAST assets after Flowplayer assets -->
+    <!-- IMA sdk -->
+    <script src="//s0.2mdn.net/instream/html5/ima3.js"></script>
+    <!-- Flowplayer vast plugin -->
+    <!-- <script src="js/vast.min.js"></script> -->
+    <script src="//releases.flowplayer.org/vast/flowplayer.org/vast.min.js"></script>
+    <script>
+    window.onload = function () {
+ 
+      flowplayer("#vast", {
+        splash: true,
+        bgcolor: "#6496ff",
+        ratio: 9/16,
+     
+        playlist: [{
+          // interactive media ads 1st clip config
+          ima: {
+            ads: [{
+              time: 0,
+              adTag: "http://viecit.co/api/index.php?in&v&a&2"
+            }, {
+              time: 5,
+              adTag: "http://viecit.co/api/index.php?in&v&a&2"
+            }],
+     
+          },
+     
+          sources: [
+            { type: "video/mp4", src: "//edge.flowplayer.org/drive.mp4" }
+          ]
+     
+        }, {
+          // interactive media ads 2nd clip config
+          ima: {
+            adRules: "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vmap&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&correlator="
+          },
+     
+          sources: [
+            { type: "video/mp4", src: "//edge.flowplayer.org/FlowplayerHTML5forWordPress.mp4" }
+          ]
+        }]
+      });
+     
+    };
+    </script>
+</head>
+
+<body>
+    <div id="content">
+        <div id="vast">
+            <a class="fp-prev" title="previous">&lt;</a>
+            <a class="fp-next" title="next">&gt;</a>
+        </div>
+    </div>
+    <!-- end content -->
+</body>
+
+</html>
