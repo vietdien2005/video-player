@@ -7,14 +7,17 @@
     <title> VAST3 VideoJS </title>
     <link href="css/video-js.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/videojs.ima.css" media="screen" />
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/video.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/videojs.ads.css" media="screen" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://vjs.zencdn.net/5.3/video.min.js"></script>
     <script src="js/videojs.watermark.js"></script>
-    <script src="js/videojs_5.vast.vpaid.min.js"></script>
+    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script src="js/videojs.ads.js"></script>
+    <script src="js/videojs.ima.js"></script>
 </head>
 
 <body>
-    <div class="wrapper" style="width:490; padding-top: 20px; margin:0 auto;">
+    <div class="wrapper" style="width:490px !important; padding-top: 20px; margin:0 auto;">
         <div class="videocontent">
             <video id="video_media" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
                 <source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4' />
@@ -22,76 +25,44 @@
         </div>
     </div>
     <script>
-    var video_media_ads = {
-        'adPreUrl': 'http://viecit.co/api/index.php?in&v&a&c1VVS29KVFVIaWc9',
-        'adPreEnabled': true,
-        'adPreTimeout': 0,
-        'adMidUrl': 'http://viecit.co/api/index.php?in&v&a&cFU0SkZyZmNoeTA9',
-        'adMidEnabled': true,
-        'adMidStartTime': '00:00:05',
-        'adMidTimeout': 0,
-    }
-    videojs('video_media', {
-        aspectRatio: '16:9',
+    videojs("video_media", {
+        aspectRatio: "16:9",
         controls: true,
-        autoplay: true,
-        preload: 'auto',
+        autoplay: false,
+        preload: "auto",
         fluid: true
     }, function() {
         var player = this;
-        player.on('pause', function() {
-            $('#video_media .vjs-big-play-button').show();
+        player.on("pause", function() {
+            $("#video_1 .vjs-big-play-button").show();
         });
-        player.on('play', function() {
-            $('#video_media .vjs-big-play-button').hide();
+        player.on("play", function() {
+            $("#video_1 .vjs-big-play-button").hide();
         });
-        var options = video_media_ads;
-        var isEnabledVast = false;
-        convertTime = function(time) {
-            var a = time.split(':');
-            return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
-        }
-        callAd = function(url, timeout) {
-            var vastAd = player.vastClient({
-                adTagUrl: url,
-                adsCancelTimeout: timeout,
-                adsEnabled: true,
-                autoResize: true,
-                vpaidFlashLoaderPath: ''
-            });
-        }
-        playAdbyTime = function(time, url, timeout) {
-            isEnabledVast = true;
-            player.pause();
-            // $('.vjs-control-bar').css('display','none');
-            callAd(url, timeout);
-            player.play();
-            player.on('vast.contentStart', function(e) {
-                player.pause();
-                // $('.vjs-control-bar').css('display','');
-                player.currentTime(time);
-                player.play();
-                isEnabledVast = false;
-            });
-            return true;
-        }
-        var isPreroll = isMidroll = false;
-        player.on('timeupdate', function(e) {
-            if (!isPreroll && player.currentTime() >= 0 && options.adPreEnabled && !isEnabledVast) {
-                isPreroll = playAdbyTime(0, options.adPreUrl, options.adPreTimeout);
-            }
-            if (options.adMidEnabled == true) {
-                var startTime = convertTime(options.adMidStartTime);
-                if (!isMidroll && player.currentTime() >= startTime && !isEnabledVast) {
-                    isMidroll = playAdbyTime(startTime, options.adMidUrl, options.adMidTimeout);
-                }
-            }
+        player.ima({
+            id: 'video_media',
+            adTagUrl: 'http://viecit.co/ads.xml'
         });
+        player.ima.requestAds();
     }).watermark({
         file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',
         xpos: 100,
         ypos: 0,
         url: 'http://tuoitre.vn/'
+    });
+
+    $("#video_media").bind("contextmenu", function(event) {
+        if ($(".videojs-rightclick").length) $("div.videojs-rightclick").remove();
+        event.preventDefault();
+        $('<div class="videojs-rightclick"><a href="http://tuoitre.vn">© Copyright 2016 vietdien2005</a></div>').appendTo("body").css({
+            top: event.pageY + "px",
+            left: event.pageX + "px"
+        });
+    }).bind("click", function(event) {
+        $("div.videojs-rightclick").remove();
+    });
+    $(document).on("click", function(event) {
+        $("div.videojs-rightclick").remove();
     });
     </script>
 </body>
