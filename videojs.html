@@ -1,9 +1,11 @@
+<!DOCTYPE html>
+<html>
+
 <head>
-    <link href="css/video-js.css" rel="stylesheet">
-    <!-- <link href="videojs-share.css" rel="stylesheet"> -->
-    <!-- <link href="vcplayer.min.css" rel="stylesheet"> -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> VideoJS </title>
+    <link href="css/video-js.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="http://vjs.zencdn.net/5-unsafe/video.js"></script>
     <script src="js/videojs.watermark.js"></script>
@@ -25,20 +27,60 @@
         </div>
     </div>
     <script>
-    videojs("video_1", {aspectRatio: "16:9",controls: true,autoplay: false,preload: "auto",fluid: true}, function() {
-        this.on("pause", function() {$("#video_1 .vjs-big-play-button").show();});
-        this.on("play", function() {$("#video_1 .vjs-big-play-button").hide();});
-    }).watermark({file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',xpos:100,ypos:0,url:'http://tuoitre.vn/'});
+    videojs("video_1", {
+        aspectRatio: "16:9",
+        controls: true,
+        autoplay: false,
+        preload: "auto",
+        fluid: true
+    }, function() {
+        this.on("pause", function() {
+            $("#video_1 .vjs-big-play-button").show();
+        });
+        this.on("play", function() {
+            $("#video_1 .vjs-big-play-button").hide();
+        });
+    }).watermark({
+        file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',
+        xpos: 100,
+        ypos: 0,
+        url: 'http://tuoitre.vn/'
+    });
 
-    videojs("video_2", {aspectRatio: "16:9",controls: true,autoplay: false,preload: "auto",fluid: true}, function() {
-        this.on("pause", function() {$("#video_2 .vjs-big-play-button").show();});
-        this.on("play", function() {$("#video_2 .vjs-big-play-button").hide();});
-    }).watermark({file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',xpos:100,ypos:0,url:'http://tuoitre.vn/'});
+    videojs("video_2", {
+        aspectRatio: "16:9",
+        controls: true,
+        autoplay: false,
+        preload: "auto",
+        fluid: true
+    }, function() {
+        this.on("pause", function() {
+            $("#video_2 .vjs-big-play-button").show();
+        });
+        this.on("play", function() {
+            $("#video_2 .vjs-big-play-button").hide();
+        });
+    }).watermark({
+        file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',
+        xpos: 100,
+        ypos: 0,
+        url: 'http://tuoitre.vn/'
+    });
 
     $("#video_1").bind("contextmenu", function(event) {
         if ($(".videojs-rightclick").length) $("div.videojs-rightclick").remove();
         event.preventDefault();
-        $('<div class="videojs-rightclick"><a href="http://tuoitre.vn">© Copyright 2016 vietdien2005</a></div>').appendTo("body").css({top: event.pageY + "px",left: event.pageX + "px"});}).bind("click", function(event) {$("div.videojs-rightclick").remove();});
-    $(document).on("click", function(event) {$("div.videojs-rightclick").remove();});
+        $('<div class="videojs-rightclick"><a href="http://tuoitre.vn">© Copyright 2016 vietdien2005</a></div>').appendTo("body").css({
+            top: event.pageY + "px",
+            left: event.pageX + "px"
+        });
+    }).bind("click", function(event) {
+        $("div.videojs-rightclick").remove();
+    });
+    $(document).on("click", function(event) {
+        $("div.videojs-rightclick").remove();
+    });
     </script>
 </body>
+
+</html>

@@ -1,75 +1,98 @@
-<head>
-  <link href="css/video-js.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/videojs.vast.vpaid.min.css" media="screen" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title> VAST3 VideoJS </title>
-  <script src="js/jquery-3.1.1.min.js"></script>
-  <script src="js/video.js"></script>
-  <script src="js/videojs.watermark.js"></script>
-  <script src="js/videojs_5.vast.vpaid.min.js"></script>
-</head>
-<body>
-<div class="wrapper" style="width:490; padding-top: 20px; margin:0 auto;">
- 	<div class="videocontent">
-		<video id="video_media" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
-    		<source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4'/>
-  		</video>
- 	</div>
-</div>
-<script>
-var video_media_ads = {
-    'adPreUrl': 'http://viecit.co/api/index.php?in&v&a&c1VVS29KVFVIaWc9',
-    'adPreEnabled' : true,
-    'adPreTimeout' : 0,
-    'adMidUrl': 'http://viecit.co/api/index.php?in&v&a&cFU0SkZyZmNoeTA9',
-    'adMidEnabled' : true,
-    'adMidStartTime': '00:00:05',
-    'adMidTimeout':  0,
-}
-videojs('video_media',{aspectRatio:'16:9',controls:true,autoplay:true,preload:'auto',fluid:true},function(){
-	var player = this;
-    player.on('pause', function () { $('#video_media .vjs-big-play-button').show(); });
-    player.on('play', function () { $('#video_media .vjs-big-play-button').hide(); }); 
-    var options = video_media_ads;
-    var isEnabledVast = false;
-    convertTime=function(time){var a = time.split(':');return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);}
-    callAd = function (url, timeout) {
-        var vastAd = player.vastClient({
-            adTagUrl: url,
-            adsCancelTimeout: timeout,
-            adsEnabled: true,
-            autoResize: true,
-            vpaidFlashLoaderPath: ''
-        });
-    }
-    playAdbyTime = function (time, url, timeout) {
-        isEnabledVast = true;
-        player.pause();
-        // $('.vjs-control-bar').css('display','none');
-        callAd(url, timeout);
-        player.play();
-        player.on('vast.contentStart', function (e) {
-            player.pause();
-            // $('.vjs-control-bar').css('display','');
-            player.currentTime(time);
-            player.play();
-            isEnabledVast = false;
-        });
-        return true;
-    }
-    var isPreroll = isMidroll = false;
-    player.on('timeupdate', function(e) {
-        if (!isPreroll && player.currentTime() >= 0 && options.adPreEnabled && !isEnabledVast) {
-            isPreroll = playAdbyTime(0, options.adPreUrl, options.adPreTimeout);
-        }
-        if (options.adMidEnabled == true) {
-            var startTime = convertTime(options.adMidStartTime);
-            if (!isMidroll && player.currentTime() >= startTime && !isEnabledVast) {
-                isMidroll = playAdbyTime(startTime, options.adMidUrl, options.adMidTimeout);
-            }
-        }
-    });
-}).watermark({file:'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',xpos:100,ypos:0,url:'http://tuoitre.vn/'});
+<!DOCTYPE html>
+<html>
 
-</script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> VAST3 VideoJS </title>
+    <link href="css/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/videojs.vast.vpaid.min.css" media="screen" />
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/video.js"></script>
+    <script src="js/videojs.watermark.js"></script>
+    <script src="js/videojs_5.vast.vpaid.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper" style="width:490; padding-top: 20px; margin:0 auto;">
+        <div class="videocontent">
+            <video id="video_media" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
+                <source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4' />
+            </video>
+        </div>
+    </div>
+    <script>
+    var video_media_ads = {
+        'adPreUrl': 'http://viecit.co/api/index.php?in&v&a&c1VVS29KVFVIaWc9',
+        'adPreEnabled': true,
+        'adPreTimeout': 0,
+        'adMidUrl': 'http://viecit.co/api/index.php?in&v&a&cFU0SkZyZmNoeTA9',
+        'adMidEnabled': true,
+        'adMidStartTime': '00:00:05',
+        'adMidTimeout': 0,
+    }
+    videojs('video_media', {
+        aspectRatio: '16:9',
+        controls: true,
+        autoplay: true,
+        preload: 'auto',
+        fluid: true
+    }, function() {
+        var player = this;
+        player.on('pause', function() {
+            $('#video_media .vjs-big-play-button').show();
+        });
+        player.on('play', function() {
+            $('#video_media .vjs-big-play-button').hide();
+        });
+        var options = video_media_ads;
+        var isEnabledVast = false;
+        convertTime = function(time) {
+            var a = time.split(':');
+            return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+        }
+        callAd = function(url, timeout) {
+            var vastAd = player.vastClient({
+                adTagUrl: url,
+                adsCancelTimeout: timeout,
+                adsEnabled: true,
+                autoResize: true,
+                vpaidFlashLoaderPath: ''
+            });
+        }
+        playAdbyTime = function(time, url, timeout) {
+            isEnabledVast = true;
+            player.pause();
+            // $('.vjs-control-bar').css('display','none');
+            callAd(url, timeout);
+            player.play();
+            player.on('vast.contentStart', function(e) {
+                player.pause();
+                // $('.vjs-control-bar').css('display','');
+                player.currentTime(time);
+                player.play();
+                isEnabledVast = false;
+            });
+            return true;
+        }
+        var isPreroll = isMidroll = false;
+        player.on('timeupdate', function(e) {
+            if (!isPreroll && player.currentTime() >= 0 && options.adPreEnabled && !isEnabledVast) {
+                isPreroll = playAdbyTime(0, options.adPreUrl, options.adPreTimeout);
+            }
+            if (options.adMidEnabled == true) {
+                var startTime = convertTime(options.adMidStartTime);
+                if (!isMidroll && player.currentTime() >= startTime && !isEnabledVast) {
+                    isMidroll = playAdbyTime(startTime, options.adMidUrl, options.adMidTimeout);
+                }
+            }
+        });
+    }).watermark({
+        file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',
+        xpos: 100,
+        ypos: 0,
+        url: 'http://tuoitre.vn/'
+    });
+    </script>
 </body>
+</html>

@@ -1,133 +1,119 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
-	<link rel="stylesheet" href="">
-	<script type="text/javascript" src="http://fs.tv.tuoitre.vn/assets/c947721e/js/jwplayer7/jwplayer.js"></script>
-	<script type="text/javascript">
-		jwplayer.key="yl/yqfTaFkHTZsvJEK6NtJYZZujiAxc3knwh";
-	</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Jwplayer </title>
+    <link rel="stylesheet" href="">
+    <script type="text/javascript" src="http://fs.tv.tuoitre.vn/assets/c947721e/js/jwplayer7/jwplayer.js"></script>
+    <script type="text/javascript">
+    jwplayer.key = "yl/yqfTaFkHTZsvJEK6NtJYZZujiAxc3knwh";
+    </script>
 </head>
+
 <body>
+    <div id="video-wrapper"></div>
+    <div id="video-wrapper2"></div>
+    <!-- http://cdn.static.tuoitre.vn/2016/06/58YMRv3O.mp4 -->
+    <script>
+    jwplayer('video-wrapper').setup({
+        "file": 'http://cdn.static.tuoitre.vn/2016/06/kmAFKbx1.mp4',
+        "image": 'http://cdn.static.tuoitre.vn/i/s639/2016/06/eWpZijGq.jpg',
+        "autostart": false,
+        "primary": 'html5',
+        "flashplayer": "//ssl.p.jwpcdn.com/player/v/7.4.4/jwplayer.flash.swf",
+        "preload": "auto",
+        "primary": "html5",
+        "repeat": false,
+        "stagevideo": false,
+        "stretching": "uniform",
+        "visualplaylist": true,
+        "width": "100%",
+        "aspectratio": "16:9",
+        "height": 270,
+        "ph": 1,
+        "pid": "qMb1QE6o",
+        "playlist": [{
+            "description": "",
+            "image": "//content.jwplatform.com/thumbs/pFDcpHsk-720.jpg",
+            "link": "//content.jwplatform.com/previews/pFDcpHsk",
+            "mediaid": "pFDcpHsk",
+            "pubdate": "Mon, 27 Jun 2016 10:18:41 -0000",
+            "sources": [{
+                "duration": 15,
+                "file": "//d28xjrpu39bs0f.cloudfront.net/bunny.mp4",
+                "height": 340,
+                "label": "H.264 480px",
+                "type": "video/mp4",
+                "width": 608
+            }, ],
+            "tags": "",
+            "title": "DaiViet_5.mp4",
+            "tracks": [{
+                "file": "//content.jwplatform.com/strips/pFDcpHsk-120.vtt",
+                "kind": "thumbnails"
+            }]
+        }],
+    });
 
-
-
-	<div id="video-wrapper"></div>
-	<div id="video-wrapper2"></div>
-	<!-- http://cdn.static.tuoitre.vn/2016/06/58YMRv3O.mp4 -->
-
-	<script>
-jwplayer('video-wrapper').setup({
-    "file": 'http://cdn.static.tuoitre.vn/2016/06/kmAFKbx1.mp4',
-    "image": 'http://cdn.static.tuoitre.vn/i/s639/2016/06/eWpZijGq.jpg',
-    "autostart": false,
-    "primary": 'html5',
-    "flashplayer": "//ssl.p.jwpcdn.com/player/v/7.4.4/jwplayer.flash.swf",
-    "preload": "auto",
-	"primary": "html5",
-	"repeat": false,
-	"stagevideo": false,
-	"stretching": "uniform",
-	"visualplaylist": true,
-	"width": "100%",
-	"aspectratio": "16:9",
-	"height": 270,
-	"ph": 1,
-  	"pid": "qMb1QE6o",
-  	"playlist": [
-    {
-      "description": "",
-      "image": "//content.jwplatform.com/thumbs/pFDcpHsk-720.jpg",
-      "link": "//content.jwplatform.com/previews/pFDcpHsk",
-      "mediaid": "pFDcpHsk",
-      "pubdate": "Mon, 27 Jun 2016 10:18:41 -0000",
-      "sources": [
-        {
-          "duration": 15,
-          "file": "//d28xjrpu39bs0f.cloudfront.net/bunny.mp4",
-          "height": 340,
-          "label": "H.264 480px",
-          "type": "video/mp4",
-          "width": 608
+    jwplayer("video-wrapper2").setup({
+        "aspectratio": "16:9",
+        "autostart": false,
+        "controls": true,
+        "displaydescription": true,
+        "displaytitle": false,
+        "flashplayer": "//ssl.p.jwpcdn.com/player/v/7.4.4/jwplayer.flash.swf",
+        "height": 270,
+        "key": "/71CmwnuCf0woGnzMjRcKPEc1gi7gPWpgJcvD0g9d7IQserGtK+oCmTtilM=",
+        "logo": {
+            "file": "http://assets-jpcust.jwpsrv.com/watermarks/b1lkdYBW.png",
+            "hide": false,
+            "margin": "0",
+            "position": "top-right"
         },
-      ],
-      "tags": "",
-      "title": "DaiViet_5.mp4",
-      "tracks": [
-        {
-          "file": "//content.jwplatform.com/strips/pFDcpHsk-120.vtt",
-          "kind": "thumbnails"
-        }
-      ]
-    }
-  ],
-});
+        "mute": false,
+        "ph": 1,
+        "pid": "qMb1QE6o",
+        "playlist": [{
+            "description": "",
+            "image": "//content.jwplatform.com/thumbs/pFDcpHsk-720.jpg",
+            "link": "//content.jwplatform.com/previews/pFDcpHsk",
+            "mediaid": "pFDcpHsk",
+            "pubdate": "Mon, 27 Jun 2016 10:18:41 -0000",
+            "sources": [
 
-jwplayer("video-wrapper2").setup({
-  "aspectratio": "16:9",
-  "autostart": false,
-  "controls": true,
-  "displaydescription": true,
-  "displaytitle": false,
-  "flashplayer": "//ssl.p.jwpcdn.com/player/v/7.4.4/jwplayer.flash.swf",
-  "height": 270,
-  "key": "/71CmwnuCf0woGnzMjRcKPEc1gi7gPWpgJcvD0g9d7IQserGtK+oCmTtilM=",
-  "logo": {
-    "file": "http://assets-jpcust.jwpsrv.com/watermarks/b1lkdYBW.png",
-    "hide": false,
-    "margin": "0",
-    "position": "top-right"
-  },
-  "mute": false,
-  "ph": 1,
-  "pid": "qMb1QE6o",
-  "playlist": [
-    {
-      "description": "",
-      "image": "//content.jwplatform.com/thumbs/pFDcpHsk-720.jpg",
-      "link": "//content.jwplatform.com/previews/pFDcpHsk",
-      "mediaid": "pFDcpHsk",
-      "pubdate": "Mon, 27 Jun 2016 10:18:41 -0000",
-      "sources": [
-        
-        {
-          "duration": 15,
-          "file": "//content.jwplatform.com/videos/pFDcpHsk-jpyoaKh9.mp4",
-          "height": 268,
-          "label": "H.264 480px",
-          "type": "video/mp4",
-          "width": 480
+                {
+                    "duration": 15,
+                    "file": "//content.jwplatform.com/videos/pFDcpHsk-jpyoaKh9.mp4",
+                    "height": 268,
+                    "label": "H.264 480px",
+                    "type": "video/mp4",
+                    "width": 480
+                },
+
+            ],
+            "tags": "",
+            "title": "DaiViet_5.mp4",
+            "tracks": [{
+                "file": "//content.jwplatform.com/strips/pFDcpHsk-120.vtt",
+                "kind": "thumbnails"
+            }]
+        }],
+        "plugins": {
+            "http://assets-jpcust.jwpsrv.com/player/6/6124956/ping.js": {
+                "pixel": "http://content.jwplatform.com/ping.gif"
+            }
         },
-        
-      ],
-      "tags": "",
-      "title": "DaiViet_5.mp4",
-      "tracks": [
-        {
-          "file": "//content.jwplatform.com/strips/pFDcpHsk-120.vtt",
-          "kind": "thumbnails"
-        }
-      ]
-    }
-  ],
-  "plugins": {
-    "http://assets-jpcust.jwpsrv.com/player/6/6124956/ping.js": {
-      "pixel": "http://content.jwplatform.com/ping.gif"
-    }
-  },
-  "preload": "auto",
-  "primary": "html5",
-  "repeat": false,
-  "stagevideo": false,
-  "stretching": "uniform",
-  "visualplaylist": true,
-  "width": "100%"
-});
-
-
-	</script>
-	
+        "preload": "auto",
+        "primary": "html5",
+        "repeat": false,
+        "stagevideo": false,
+        "stretching": "uniform",
+        "visualplaylist": true,
+        "width": "100%"
+    });
+    </script>
 </body>
+
 </html>
