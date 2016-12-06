@@ -5,52 +5,124 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> VAST3 VideoJS </title>
-    <link href="//vjs.zencdn.net/5.3/video-js.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://googleads.github.io/videojs-ima/third_party/videojs-ads/videojs.ads.css"/>
-    <link rel="stylesheet" type="text/css" href="https://googleads.github.io/videojs-ima/src/videojs.ima.css"/>
+    <link rel="stylesheet" href="css/video-js.css">
+    <!-- <link rel="stylesheet" href="videojs-ima/video-js.css"> -->
+    <!-- <link rel="stylesheet" href="videojs-ima/video-js-add.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/videojs.ads.css" />
+    <link rel="stylesheet" type="text/css" href="videojs-ima/videojs.ima.css"/>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://vjs.zencdn.net/5.3/video.min.js"></script>
-    <script src="js/videojs.watermark.js"></script>
-    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-    <script src="js/videojs.ads.js"></script>
-    <script src="js/videojs.ima.js"></script>
+    <script type="text/javascript" src="js/video.js"></script>
+    <script type="text/javascript" src="js/videojs.watermark.js"></script>
+    <script type="text/javascript" src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script type="text/javascript" src="js/videojs.ads.js"></script>
+    <script type="text/javascript" src="videojs-ima/videojs.ima.js"></script>
 </head>
 
 <body>
     <div class="wrapper" style="width:490px !important; padding-top: 20px; margin:0 auto;">
         <div class="videocontent">
             <video id="video_media" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
-                <source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4' />
+                <source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4'/>
             </video>
         </div>
     </div>
     <script>
     var options = {
         id: 'content_video',
-        adTagUrl: 'http://viecit.co/ads.xml'
+        adTagUrl: 'http://adserver.dev/ads.xml',
+        debug: true,
+        autoPlayAdBreaks: true
     };
-    videojs("video_media", {
+
+    var player = videojs("video_media", {
         aspectRatio: "16:9",
         controls: true,
         autoplay: false,
         preload: "auto",
         fluid: true
     }, function() {
-        var player = this;
-        player.on("pause", function() {
+        this.on("pause", function() {
             $("#video_1 .vjs-big-play-button").show();
         });
-        player.on("play", function() {
+        this.on("play", function() {
             $("#video_1 .vjs-big-play-button").hide();
         });
-        player.ima(options);
+    });
+
+    player.ima(options);
+    player.ima.requestAds();
+    var startEvent = 'click';
+    //Detach mobile
+    if (navigator.userAgent.match(/iPhone/i) ||
+        navigator.userAgent.match(/iPad/i) ||
+        navigator.userAgent.match(/Android/i)) {
+        startEvent = 'touchend';
+    }
+    player.one(startEvent, function() {
+        player.ima.initializeAdDisplayContainer();
         player.ima.requestAds();
-        var startEvent = 'click';
-        player.one(startEvent,function() {
-            player.ima.initializeAdDisplayContainer();
-            player.ima.requestAds();
-            player.play();
+        player.play();
+    });
+
+    player.on('adsready', function() {
+        console.log("adsready");
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.STARTED, function(adEvent) {
+            sonuc = adEvent.getAd().isLinear();
+            console.log("isLinear: " + sonuc);
+            console.log("ad started");
+
+            $('#ima-controls-div').css('display', 'block');
+            $('#ima-ad-container').css('display', 'block');
+            if (!sonuc) {
+                $('#ima-controls-div').css('display', 'none');
+                setTimeout(function() {
+                    $('#ima-ad-container').css('display', 'none');
+                }, 15000);
+            }
+        });
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED, function() {
+            console.log("content resumed");
+            $('#ima-ad-container').css('display', 'none');
+        });
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED, function() {
+            console.log("content paused");
+            $('#ima-ad-container').css('display', 'none');
+        });
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.COMPLETE, function() {
+            console.log("ad completed");
+        });
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.LINEAR_CHANGED, function() {
+            console.log("linear changed");
+        });
+
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.LOADED, function() {
+            console.log("ad loaded");
+        });
+
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.LOG, function(a) {
+            console.log("logged" + a);
+        });
+
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.SKIPPED, function() {
+            console.log("ad skipped");
+        });
+
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.USER_CLOSE, function() {
+            sonuc = adEvent.getAd().isLinear();
+            console.log("user closed");
+            if (sonuc) {
+                $('#ima-ad-container').css('display', 'none');
+                $('#ima-controls-div').css('display', 'none');
+            }
+        });
+
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.AD_BREAK_READY, function() {
+            console.log("ad break ready");
+        });
+
+        player.ima.getAdsManager().addEventListener(google.ima.AdEvent.Type.AD_METADATA, function() {
+            console.log("ad metadata");
         });
     });
 
