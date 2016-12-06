@@ -22,7 +22,14 @@
         </div>
     </div>
     <script>
-    var video_media_ads = {
+    var vjs_options_default = {
+        "aspectRatio": '16:9',
+        "controls": true,
+        "autoplay": true,
+        "preload": 'auto',
+        "fluid": true
+    }
+    var vjs_options_ads = {
         'adPreUrl': 'http://adserver.dev/api/index.php?in&v&a&cFU0SkZyZmNoeTA9',
         'adPreEnabled': true,
         'adPreTimeout': 0,
@@ -31,13 +38,7 @@
         'adMidStartTime': '00:00:05',
         'adMidTimeout': 0,
     }
-    videojs('video_media', {
-        aspectRatio: '16:9',
-        controls: true,
-        autoplay: true,
-        preload: 'auto',
-        fluid: true
-    }, function() {
+    videojs('video_media', vjs_options_default, function() {
         var player = this;
         player.on('pause', function() {
             $('#video_media .vjs-big-play-button').show();
@@ -45,7 +46,7 @@
         player.on('play', function() {
             $('#video_media .vjs-big-play-button').hide();
         });
-        var options = video_media_ads;
+        var options = vjs_options_ads;
         var isEnabledVast = false;
         convertTime = function(time) {
             var a = time.split(':');

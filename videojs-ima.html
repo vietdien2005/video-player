@@ -49,11 +49,9 @@
             $("#video_1 .vjs-big-play-button").hide();
         });
     });
-
     player.ima(options);
     player.ima.requestAds();
     var startEvent = 'click';
-    //Detach mobile
     if (navigator.userAgent.match(/iPhone/i) ||
         navigator.userAgent.match(/iPad/i) ||
         navigator.userAgent.match(/Android/i)) {
@@ -129,7 +127,7 @@
     $("#video_media").bind("contextmenu", function(event) {
         if ($(".videojs-rightclick").length) $("div.videojs-rightclick").remove();
         event.preventDefault();
-        $('<div class="videojs-rightclick"><a href="http://tuoitre.vn">© Copyright 2016 vietdien2005</a></div>').appendTo("body").css({
+        $('<div class="videojs-rightclick"><a href="http://vietdien2005.github.io">© Copyright 2016 vietdien2005</a></div>').appendTo("body").css({
             top: event.pageY + "px",
             left: event.pageX + "px"
         });
