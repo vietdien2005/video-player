@@ -25,18 +25,9 @@
     var vjs_options_default = {
         "aspectRatio": '16:9',
         "controls": true,
-        "autoplay": true,
+        "autoplay": false,
         "preload": 'auto',
         "fluid": true
-    }
-    var vjs_options_ads = {
-        'adPreUrl': 'http://d.ants.vn/delivery/zone/582475445.vast.xml?url=tuoitre.vn&type=preroll',
-        'adPreEnabled': true,
-        'adPreTimeout': 0,
-        'adMidUrl': 'http://adserver.dev/api/index.php?in&v&a&cFU0SkZyZmNoeTA9',
-        'adMidEnabled': false,
-        'adMidStartTime': '00:00:05',
-        'adMidTimeout': 0,
     }
     videojs('video_media', vjs_options_default, function() {
         var player = this;
@@ -46,13 +37,24 @@
         player.on('play', function() {
             $('#video_media .vjs-big-play-button').hide();
         });
-        var options = vjs_options_ads;
+        var options =  {
+            'adPreUrl': 'http://network.tuoitre.vn/api/index.php?in&v&a&cFU0SkZyZmNoeTA9',
+            'adPreEnabled': true,
+            'adPreTimeout': 20000,
+            'adMidUrl': 'http://network.tuoitre.vn/api/index.php?in&v&a&cFU0SkZyZmNoeTA9',
+            'adMidEnabled': false,
+            'adMidStartTime': '00:00:05',
+            'adMidTimeout': 20000,
+        };
         var isEnabledVast = false;
-        convertTime = function(time) {
+        var convertTime = function(time) {
             var a = time.split(':');
             return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
         }
-        callAd = function(url, timeout) {
+        var playAdbyTime = function(time, url, timeout) {
+            isEnabledVast = true;
+            player.pause();
+            // $('.vjs-control-bar').css('display','none');
             var vastAd = player.vastClient({
                 adTagUrl: url,
                 adsCancelTimeout: timeout,
@@ -60,12 +62,6 @@
                 autoResize: true,
                 vpaidFlashLoaderPath: ''
             });
-        }
-        playAdbyTime = function(time, url, timeout) {
-            isEnabledVast = true;
-            player.pause();
-            // $('.vjs-control-bar').css('display','none');
-            callAd(url, timeout);
             player.play();
             player.on('vast.contentStart', function(e) {
                 player.pause();
