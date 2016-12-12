@@ -34,7 +34,7 @@
         "preload": 'auto',
         "fluid": true
     }
-    var player = videojs('video_media', vjs_options_default, function() {
+    videojs('video_media', vjs_options_default, function() {
         var player = this;
         player.on('pause', function() {
             $('#video_media .vjs-big-play-button').show();
@@ -49,8 +49,9 @@
             url: 'http://tuoitre.vn/'
         });
         var vastAd = player.vastClient({
-            adTagUrl: "http://d.ants.vn/delivery/zone/582475445.vast.xml?url=tuoitre.vn&type=preroll",
+            adTagUrl: "http://network.tuoitre.vn/vast&r&g&b1FUNlhKNm9GMWs9",
             adsCancelTimeout: 20000,
+            responseTimeout: 20000,
             adsEnabled: true,
             autoResize: true,
             vpaidFlashLoaderPath: ''
