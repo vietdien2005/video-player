@@ -34,7 +34,14 @@
         "preload": 'auto',
         "fluid": true
     }
+    
     videojs('video_media', vjs_options_default, function() {
+        var listlinkad = [
+            'http://network.tuoitre.vn/out&a&i&UEoxbHZkSHdhdWc9',
+            'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9',
+            'http://network.tuoitre.vn/out&a&i&UEoxbHZkSHdhdWc9',
+            'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9'
+        ];
         var player = this;
         player.on('pause', function() {
             $('#video_media .vjs-big-play-button').show();
@@ -48,8 +55,9 @@
             ypos: 0,
             url: 'http://tuoitre.vn/'
         });
+        var randnum = Math.floor(Math.random() * listlinkad.length);
         var vastAd = player.vastClient({
-            adTagUrl: "http://network.tuoitre.vn/vast&r&g&b1FUNlhKNm9GMWs9",
+            adTagUrl: listlinkad[randnum],
             adsCancelTimeout: 20000,
             responseTimeout: 20000,
             adsEnabled: true,
