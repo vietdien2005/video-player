@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Radiant Media Player </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.radiantmediatechs.com/rmp/v3/latest/js/rmp.min.js"></script>
+</head>
+
+<body>
+    <div class="col-md-12" style="padding-top: 20px; margin:0 auto;">
+        <div id="videocontent"></div>
+    </div>
+    <script>
+
+    // Define schedule
+    var schedule = {
+        // Preroll
+        preroll: [
+            'https://delivery1.lavanetwork.net/www/delivery/fc.php?script=bannerTypeHtml:vastInlineBannerTypeHtml:vastInlineHtmlExtend&format=vast&nz=1&zones=pre-roll%3D950&version=2'
+        ],
+        // Midroll
+        midroll: [
+            [60, 'https://delivery1.lavanetwork.net/www/delivery/fc.php?script=bannerTypeHtml:vastInlineBannerTypeHtml:vastInlineHtmlExtend&format=vast&nz=1&zones=pre-roll%3D948&version=2']
+        ],
+        // Postroll
+        postroll: [
+            'https://delivery1.lavanetwork.net/www/delivery/fc.php?script=bannerTypeHtml:vastInlineBannerTypeHtml:vastInlineHtmlExtend&format=vast&nz=1&zones=pre-roll%3D948&version=2'
+        ]
+    };
+    // var ccFiles = [
+    //     ['en', 'English', 'http://sub.chieutv.com/vod5/2014/6/7397/13588/7397.vtt', 'default']
+    // ];
+
+    var settings = {
+        licenseKey: 'Y2lxYWdtZ28wMCEqXyU3OGVzN292MjlrP3JvbTVkYXNpczMwZGIwQSVfKg==',
+        delayToFade: 1000,
+        width: 490,
+        height: 275,
+        bitrates: {
+            // hls: 'http://42.115.0.98:1935/vod/_definst_/smil:media/vod5/2014/6/7397/13588/HD.smil/playlist.m3u8'
+            mp4: ['http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4']
+        },
+        poster: 'https://www.radiantmediaplayer.com/images/poster-rmp-showcase.jpg',
+        // nav: true,
+        // displayStreams: true,
+        // ads: true,
+        // Inject schedule in player settings
+        // adSchedule: schedule,
+        // hlsJSEnableCEACaptions: true,
+        // adSkipButton: true,
+        // skin: 's1',
+        // pathToRmpFiles: "http://libs.lavanetwork.net/rmp/3.10.4/",
+        // hideControls: false,
+        // hideSeekBar: false,
+        // adDelayBeforeSkip: 7,
+        sharing: true,
+        // detectAutoplay: true,
+        // Here comes our waterfall array with fallback adTag urls  
+        // adTagWaterfall: [
+        //     'https://delivery1.lavanetwork.net/www/delivery/fc.php?script=bannerTypeHtml:vastInlineBannerTypeHtml:vastInlineHtmlExtend&format=vast&nz=1&zones=pre-roll%3D948&version=2',
+        //     'https://delivery1.lavanetwork.net/www/delivery/fc.php?script=bannerTypeHtml:vastInlineBannerTypeHtml:vastInlineHtmlExtend&format=vast&nz=1&zones=pre-roll%3D948&version=2'
+        // ],
+        labels: {
+            // bitrates: {
+            //     auto: "Auto",
+            //     renditions: ["Low", "Med", "High"]
+            // },
+            // hint: {
+            //     sharing: "Share",
+            //     quality: "Quality",
+            //     speed: "Speed",
+            //     captions: "Captions",
+            //     audio: "Audio",
+            //     live: "Live",
+            //     cast: "Cast",
+            //     playlist: "Playlist"
+            // },
+            // captions: {
+            //     off: "Off"
+            // },
+            error: {
+                customErrorMessage: "Video này không tồn tại.",
+                noSupportMessage: "No playback support.",
+                noSupportInstallChrome: "Google Chrome của bạn không phải version mới nhất."
+            },
+            // flash: {
+            //     defaultAudioLabel: "English"
+            // },
+            // ads: {
+            //     controlBarCustomMessage: "Ad"
+            // }
+        },
+        // ccFiles: ccFiles
+    };
+    var rmp = new RadiantMP("videocontent");
+    // Initialize player
+    rmp.init(settings);
+    </script>
+</body>
+
+</html>
