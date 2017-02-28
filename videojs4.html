@@ -7,42 +7,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> VideoJS </title>
     <link href="videojs4/video-js.css" rel="stylesheet">
+    <link href="videojs4/videojs.vast.vpaid.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+    <!-- <link href="http://stc.v3.news.zing.vn/videojs/v1.6_12/video_js/video-js.min.css" rel="stylesheet"> -->
+    <!-- <link href="http://stc.v3.news.zing.vn/videojs/v1.6_12/lib/videojs-contrib-ads/videojs.ads.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="http://stc.v3.news.zing.vn/videojs/v1.6_12/lib/videojs.vast.min.css" rel="stylesheet" type="text/css"> -->
     
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="videojs4/video.js"></script>
-    <script src="js/videojs.watermark.js"></script>
+    <script src="http://stc.v3.news.zing.vn/videojs/v1.6_12/video_js/videojs.simpleoverlay.min.js"></script>
+    <script src="http://stc.v3.news.zing.vn/videojs/v1.6_12/lib/videojs-contrib-ads/videojs.ads.min.js"></script>
+    <!-- <script src="http://theonion.github.io/videojs-vast-plugin/videojs.vast.js"></script> -->
+    <script src="videojs4/videojs_4.vast.vpaid.min.js"></script>
+    <!-- <script src="http://stc.v3.news.zing.vn/videojs/v1.6_12/lib/youtube/youtube.min.js"></script> -->
+    <script src="videojs4/init_video.min.js"></script>
 </head>
 
 <body>
-    <video id="video_1" class="video-js vjs-default-skin vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
-        <source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4' />
-    </video>
+    <div class="col-xs-12" style="padding-top: 20px; margin:0 auto;">
+        <video id="video_1" class="video-js vjs-default-skin vjs-big-play-centered">
+            <source src="//content.bitsontherun.com/videos/bkaovAYt-52qL9xLP.mp4" type='video/mp4' />
+        </video>
+    </div>
+
+    <!-- <div class="box-player">
+        <div id="video" class="themes">
+            <div id="overlay-play"></div>
+            <div id="overlay-stop"></div>
+            <div id="overlay"></div>
+            <div id="title-overlay" class="vjs-sample-overlay"></div>
+            <video webkit-playsinline id="adtima_player" class="video-js vjs-default-skin">
+
+            </video>
+        </div>
+        <script>
+            init_func();
+        </script>
+    </div> -->
     <script>
-    videojs("video_1", {
-        aspectRatio: "16:9",
+    
+    var video = videojs("video_1", {
+        poster: "http://cdn.static.tuoitre.vn/i/s639/2017/02/7S14eKFB.jpg",
         width: 490,
         height: 275,
         controls: true,
         autoplay: false,
         preload: "auto",
-        fluid: true
     }, function() {
+        var s = document.getElementsByClassName("vjs-loading-spinner"),
+            t = document.getElementById("video_1").getElementsByClassName("vjs-big-play-button");
         this.on("pause", function() {
-            $("#video_1 .vjs-big-play-button").show();
+            t[0].style.display = 'block';
+        });
+        this.on("ended", function() { 
+            this.posterImage.show();
+            t[0].style.display = 'block';
         });
         this.on("play", function() {
-            $("#video_1 .vjs-big-play-button").hide();
+            this.trigger("loadstart");
+            this.posterImage.hide();
+            t[0].style.display = 'none';
+            s[0].style.display = "block";
         });
-    }).watermark({
-        file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',
-        xpos: 100,
-        ypos: 0,
-        url: 'http://tuoitre.vn/'
-    });
-
+        this.on("playing", function() {
+            s[0].style.display = "none";
+        });
+        this.on("seeking", function() { 
+            s[0].style.display = "block";
+        });
+    }).vastClient({ adTagUrl: "http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9", vpaidFlashLoaderPath: '' });
+    
+    // init_player();
     
     </script>
 </body>
