@@ -17,160 +17,225 @@
     <script src="js/videojs.watermark.js"></script>
     <script src="js/videojs_5.vast.vpaid.min.js"></script>
     <script type="text/javascript" src="jwplayer/jwplayer.js"></script>
+    <script src="https://cdn.radiantmediatechs.com/rmp/v3/latest/js/rmp.min.js"></script>
     <script type="text/javascript">
         jwplayer.key = "yl/yqfTaFkHTZsvJEK6NtJYZZujiAxc3knwh";
     </script>
 </head>
 
 <body>
-    
-    <div class="col-md-12" style="max-width:490px !important; padding-top: 20px; margin:0 auto;">
-        <div class="videocontent">
-            <video id="video1" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
-                <source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4' />
-            </video>
+<div class="container">
+    <div class="row">
+        <h1>VideoJS 5</h1>
+        <div class="col-md-12" style="max-width:490px !important; margin:0 auto;">
+            <div class="videocontent">
+                <video id="videojs_1" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
+                    <source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4' />
+                </video>
+            </div>
         </div>
-    </div>
-    <script>
-    var vjs_options_default = {
-        "aspectRatio": '16:9',
-        "controls": true,
-        "autoplay": false,
-        "preload": 'auto',
-        "fluid": true
-    }
-    
-    videojs('video1', vjs_options_default, function() {
-        var listlinkad = [
-            'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9',
-        ];
-        var player = this;
-        player.on('pause', function() {
-            $('#video1 .vjs-big-play-button').show();
+        <script>
+        var vjs_options_default = {
+            "aspectRatio": '16:9',
+            "controls": true,
+            "autoplay": false,
+            "preload": 'auto',
+            "fluid": true
+        }
+        
+        videojs('videojs_1', vjs_options_default, function() {
+            var listlinkad = [
+                'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9',
+            ];
+            var player = this;
+            player.on('pause', function() {
+                $('#videojs_1 .vjs-big-play-button').show();
+            });
+            player.on('play', function() {
+                $('#videojs_1 .vjs-big-play-button').hide();
+            });
+            player.watermark({
+                file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',
+                xpos: 100,
+                ypos: 0,
+                url: 'http://tuoitre.vn/'
+            });
+            var randnum = Math.floor(Math.random() * listlinkad.length);
+            var vastAd = player.vastClient({
+                adTagUrl: listlinkad[randnum],
+                adsCancelTimeout: 20000,
+                responseTimeout: 20000,
+                adsEnabled: true,
+                autoResize: true,
+                vpaidFlashLoaderPath: ''
+            });
+            player.on('reset', function () {
+                if (!vastAd.isEnabled()) {
+                    vastAd.enable();
+                } else {
+                    vastAd.disable();
+                }
+            });
         });
-        player.on('play', function() {
-            $('#video1 .vjs-big-play-button').hide();
-        });
-        player.watermark({
-            file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',
-            xpos: 100,
-            ypos: 0,
-            url: 'http://tuoitre.vn/'
-        });
-        var randnum = Math.floor(Math.random() * listlinkad.length);
-        var vastAd = player.vastClient({
-            adTagUrl: listlinkad[randnum],
-            adsCancelTimeout: 20000,
-            responseTimeout: 20000,
-            adsEnabled: true,
-            autoResize: true,
-            vpaidFlashLoaderPath: ''
-        });
-        player.on('reset', function () {
-            if (!vastAd.isEnabled()) {
-                vastAd.enable();
-            } else {
-                vastAd.disable();
-            }
-        });
-    });
-    </script>
+        </script>
 
-    <div class="col-md-12" style="max-width:490px !important; padding-top: 20px; margin:0 auto;">
-        <div class="videocontent">
-            <video id="video2" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
-                <source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4' />
-            </video>
+        <div class="col-md-12" style="max-width:490px !important; margin:0 auto;">
+            <div class="videocontent">
+                <video id="videojs_2" class="video-js vjs-fluid vjs-big-play-centered" poster='http://cdn.static.tuoitre.vn/i/s639/2016/10/pZePEXSf.jpg'>
+                    <source src="http://cdn.static.tuoitre.vn/2016/10/BnUCSYon.mp4" type='video/mp4' />
+                </video>
+            </div>
         </div>
-    </div>
-    <script>
-    var vjs_options_default = {
-        "aspectRatio": '16:9',
-        "controls": true,
-        "autoplay": false,
-        "preload": 'auto',
-        "fluid": true
-    }
-    
-    videojs('video2', vjs_options_default, function() {
-        var listlinkad = [
-            'http://delivery.yomedia.vn/vast?pid=67e10d49a16d4d3da4e319901e4a8385&ec=0',
-        ];
-        var player = this;
-        player.on('pause', function() {
-            $('#video2 .vjs-big-play-button').show();
-        });
-        player.on('play', function() {
-            $('#video2 .vjs-big-play-button').hide();
-        });
-        player.watermark({
-            file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',
-            xpos: 100,
-            ypos: 0,
-            url: 'http://tuoitre.vn/'
-        });
-        var randnum = Math.floor(Math.random() * listlinkad.length);
-        var vastAd = player.vastClient({
-            adTagUrl: listlinkad[randnum],
-            adsCancelTimeout: 20000,
-            responseTimeout: 20000,
-            adsEnabled: true,
-            autoResize: true,
-            vpaidFlashLoaderPath: ''
-        });
-        player.on('reset', function () {
-            if (!vastAd.isEnabled()) {
-                vastAd.enable();
-            } else {
-                vastAd.disable();
-            }
-        });
-    });
-    </script>
-    
-    <div class="col-md-12" style="max-width:490px !important; padding-top: 20px; margin:0 auto;">
-        <div id="video3"></div>    
-    </div>
-    <script>
-    jwplayer('video3').setup({
-        file: 'http://cdn.static.tuoitre.vn/2016/10/CPmfXUSc.mp4',
-        image: 'http://cdn.static.tuoitre.vn/i/s639/2016/10/zVB5Nqi0.jpg',
-        autostart: false,
-        advertising: {
-            client: 'vast',
-            skiptext: 'Bỏ qua',
-            skipmessage: 'Bỏ qua sau xx giây',
-            schedule: {
-                "mid0": {
-                    "offset": "0",
-                    "tag": "http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9"
-                },
-            }
+        <script>
+        var vjs_options_default = {
+            "aspectRatio": '16:9',
+            "controls": true,
+            "autoplay": false,
+            "preload": 'auto',
+            "fluid": true
         }
-    });
-    </script>
-    
-    <div class="col-md-12" style="max-width:490px !important; padding-top: 20px; margin:0 auto;">
-        <div id="video4"></div>
+        
+        videojs('videojs_2', vjs_options_default, function() {
+            var listlinkad = [
+                'http://delivery.yomedia.vn/vast?pid=67e10d49a16d4d3da4e319901e4a8385&ec=0',
+            ];
+            var player = this;
+            player.on('pause', function() {
+                $('#videojs_2 .vjs-big-play-button').show();
+            });
+            player.on('play', function() {
+                $('#videojs_2 .vjs-big-play-button').hide();
+            });
+            player.watermark({
+                file: 'http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png',
+                xpos: 100,
+                ypos: 0,
+                url: 'http://tuoitre.vn/'
+            });
+            var randnum = Math.floor(Math.random() * listlinkad.length);
+            var vastAd = player.vastClient({
+                adTagUrl: listlinkad[randnum],
+                adsCancelTimeout: 20000,
+                responseTimeout: 20000,
+                adsEnabled: true,
+                autoResize: true,
+                vpaidFlashLoaderPath: ''
+            });
+            player.on('reset', function () {
+                if (!vastAd.isEnabled()) {
+                    vastAd.enable();
+                } else {
+                    vastAd.disable();
+                }
+            });
+        });
+        </script>
     </div>
-    <script>
-    jwplayer('video4').setup({
-        file: 'http://cdn.static.tuoitre.vn/2016/10/CPmfXUSc.mp4',
-        image: 'http://cdn.static.tuoitre.vn/i/s639/2016/10/zVB5Nqi0.jpg',
-        autostart: false,
-        advertising: {
-            client: 'vast',
-            skiptext: 'Bỏ qua',
-            skipmessage: 'Bỏ qua sau xx giây',
-            schedule: {
-                "mid0": {
-                    "offset": "0",
-                    "tag": "http://delivery.yomedia.vn/vast?pid=67e10d49a16d4d3da4e319901e4a8385&ec=0"
-                },
+    <div class="row">
+        <h1>Jwplayer</h1>
+        <div class="col-md-12" style="max-width:490px !important; margin:0 auto;">
+            <div id="video_jw_1"></div>    
+        </div>
+        <script>
+        jwplayer('video_jw_1').setup({
+            file: 'http://cdn.static.tuoitre.vn/2016/10/CPmfXUSc.mp4',
+            image: 'http://cdn.static.tuoitre.vn/i/s639/2016/10/zVB5Nqi0.jpg',
+            autostart: false,
+            advertising: {
+                client: 'vast',
+                skiptext: 'Bỏ qua',
+                skipmessage: 'Bỏ qua sau xx giây',
+                schedule: {
+                    "mid0": {
+                        "offset": "0",
+                        "tag": "http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9"
+                    },
+                }
             }
-        }
-    });
-    </script>
-
+        });
+        </script>
+        
+        <div class="col-md-12" style="max-width:490px !important; margin:0 auto;">
+            <div id="video_jw_2"></div>
+        </div>
+        <script>
+        jwplayer('video_jw_2').setup({
+            file: 'http://cdn.static.tuoitre.vn/2016/10/CPmfXUSc.mp4',
+            image: 'http://cdn.static.tuoitre.vn/i/s639/2016/10/zVB5Nqi0.jpg',
+            autostart: false,
+            advertising: {
+                client: 'vast',
+                skiptext: 'Bỏ qua',
+                skipmessage: 'Bỏ qua sau xx giây',
+                schedule: {
+                    "mid0": {
+                        "offset": "0",
+                        "tag": "http://delivery.yomedia.vn/vast?pid=67e10d49a16d4d3da4e319901e4a8385&ec=0"
+                    },
+                }
+            }
+        });
+        </script>
+    </div>
+    <div class="row">
+        <h1>Radian Media Player</h1>
+        <div class="col-md-12" style="max-width:490px !important; margin:0 auto;">
+            <div id="rmp_1"></div>
+        </div>
+        <script>
+        var rmp_1 = new RadiantMP("rmp_1").init({
+        licenseKey: "Y2lxYWdtZ28wMCEqXyU3OGVzN292MjlrP3JvbTVkYXNpczMwZGIwQSVfKg==",
+            delayToFade: 1000,
+            width: 490,
+            height: 275,
+            bitrates: { 
+                mp4: ["http://cdn.static.tuoitre.vn/2016/10/CPmfXUSc.mp4"]
+            },
+            poster: "http://cdn.static.tuoitre.vn/i/s639/2016/10/zVB5Nqi0.jpg",
+            logo: "http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png",
+            logoWatermark: true,
+            sharing: true,
+            ads: true,
+            autoplay: false,
+            adSchedule: {
+                preroll: ["http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9"],
+                midroll: [
+                    [5, 'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9'],
+                    [10, 'https://s3.amazonaws.com/demo.jwplayer.com/player-demos/assets/overlay.xml']
+                ],
+                // Postroll
+                postroll: [
+                    'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9'
+                ]
+            },
+            adSkipButton: true,
+            adDelayBeforeSkip: 5,
+        });
+        </script>
+        
+        <div class="col-md-12" style="max-width:490px !important; margin:0 auto;">
+            <div id="rmp_2"></div>
+        </div>
+        <script>
+        var rmp_2 = new RadiantMP("rmp_2").init({
+        licenseKey: "Y2lxYWdtZ28wMCEqXyU3OGVzN292MjlrP3JvbTVkYXNpczMwZGIwQSVfKg==",
+            delayToFade: 1000,
+            width: 490,
+            height: 275,
+            bitrates: { 
+                mp4: ["http://cdn.static.tuoitre.vn/2016/10/CPmfXUSc.mp4"]
+            },
+            poster: "http://cdn.static.tuoitre.vn/i/s639/2016/10/zVB5Nqi0.jpg",
+            logo: "http://static.new.tuoitre.vn/tto/i/s626/2016/08/29/logo-100-1472460407.png",
+            logoWatermark: true,
+            sharing: true,
+            ads: true,
+            autoplay: false,
+            adSkipButton: true,
+            adDelayBeforeSkip: 5,
+        });
+        </script>
+    </div>
+</div>
 </body>
 </html>
