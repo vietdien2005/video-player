@@ -23,7 +23,7 @@
         delayToFade: 1000,
         width: 490,
         height: 275,
-        bitrates: { 
+        bitrates: {
             mp4: ["http://butlerccwebdev.net//support/html5-video/media/bigbuckbunnytrailer-480p.mp4"]
         },
         poster: "https://www.radiantmediaplayer.com/images/poster-rmp-showcase.jpg",
@@ -33,18 +33,25 @@
         ads: true,
         autoplay: true,
         adSchedule: {
-            preroll: ["http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9"],
+            preroll: ["http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9"],
             midroll: [
-                [5, 'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9'],
+                [5, 'http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9'],
                 [10, 'https://s3.amazonaws.com/demo.jwplayer.com/player-demos/assets/overlay.xml']
             ],
             // Postroll
             postroll: [
-                'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9'
+                'http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9'
             ]
         },
         adSkipButton: true,
         adDelayBeforeSkip: 5,
+        adShowRemainingTime: true,
+        adUseWatermarkCountdownAndMessage: true,
+        labels: {
+            ads: {
+                controlBarCustomMessage: "The ad by Tuoitre.vn"
+            }
+        },
     });
     </script>
 </body>

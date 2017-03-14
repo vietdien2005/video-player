@@ -45,7 +45,7 @@
         
         videojs('videojs_1', vjs_options_default, function() {
             var listlinkad = [
-                'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9',
+                'http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9',
             ];
             var player = this;
             player.on('pause', function() {
@@ -148,7 +148,7 @@
                 schedule: {
                     "mid0": {
                         "offset": "0",
-                        "tag": "http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9"
+                        "tag": "http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9"
                     },
                 }
             }
@@ -198,18 +198,20 @@
             ads: true,
             autoplay: false,
             adSchedule: {
-                preroll: ["http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9"],
+                preroll: ["http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9"],
                 midroll: [
-                    [5, 'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9'],
+                    [5, 'http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9'],
                     [10, 'https://s3.amazonaws.com/demo.jwplayer.com/player-demos/assets/overlay.xml']
                 ],
                 // Postroll
                 postroll: [
-                    'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9'
+                    'http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9'
                 ]
             },
             adSkipButton: true,
-            adDelayBeforeSkip: 5,
+            adDelayBeforeSkip: 2,
+            adShowRemainingTime: true,
+            adUseWatermarkCountdownAndMessage: true,
         });
         </script>
         
@@ -232,7 +234,9 @@
             ads: true,
             autoplay: false,
             adSkipButton: true,
-            adDelayBeforeSkip: 5,
+            adDelayBeforeSkip: 2,
+            adShowRemainingTime: true,
+            adUseWatermarkCountdownAndMessage: true,
         });
         </script>
     </div>
