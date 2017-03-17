@@ -17,7 +17,8 @@
     <script src="js/videojs.watermark.js"></script>
     <script src="js/videojs_5.vast.vpaid.min.js"></script>
     <script type="text/javascript" src="jwplayer/jwplayer.js"></script>
-    <script src="https://cdn.radiantmediatechs.com/rmp/v3/latest/js/rmp.min.js"></script>
+    <!-- <script src="https://cdn.radiantmediatechs.com/rmp/v3/latest/js/rmp.min.js"></script> -->
+    <script src="http://static.new.tuoitre.vn/rmp/js/rmp.min.js"></script>
     <script type="text/javascript">
         jwplayer.key = "yl/yqfTaFkHTZsvJEK6NtJYZZujiAxc3knwh";
     </script>
@@ -198,20 +199,21 @@
             ads: true,
             autoplay: false,
             adSchedule: {
-                preroll: ["http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9"],
+                preroll: ["http://network.tuoitre.vn/vast&r&g&UEoxbHZkSHdhdWc9"],
                 midroll: [
-                    [5, 'http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9'],
+                    [5, 'http://network.tuoitre.vn/vast&r&g&UEoxbHZkSHdhdWc9'],
                     [10, 'https://s3.amazonaws.com/demo.jwplayer.com/player-demos/assets/overlay.xml']
                 ],
                 // Postroll
                 postroll: [
-                    'http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9'
+                    'http://network.tuoitre.vn/vast&r&g&UEoxbHZkSHdhdWc9'
                 ]
             },
             adSkipButton: true,
             adDelayBeforeSkip: 2,
             adShowRemainingTime: true,
             adUseWatermarkCountdownAndMessage: true,
+            pathToRmpFiles: "http://static.new.tuoitre.vn/rmp",
         });
         </script>
         
@@ -237,6 +239,7 @@
             adDelayBeforeSkip: 2,
             adShowRemainingTime: true,
             adUseWatermarkCountdownAndMessage: true,
+            pathToRmpFiles: "http://static.new.tuoitre.vn/rmp",
         });
         </script>
     </div>
