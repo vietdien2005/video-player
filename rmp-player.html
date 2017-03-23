@@ -18,6 +18,11 @@
         <div id="videocontent"></div>
     </div>
     <script>
+    var listlinkad = [
+        'http://network.tuoitre.vn/out&a&i&Y3hiMzZpOFBWVzQ9',
+        'http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9',
+        'http://network.tuoitre.vn/in&v&a&U3U5d0xmNGVkUnc9'
+    ];
     var videocontent = new RadiantMP("videocontent").init({
         licenseKey: "Kl8lNzhlczdvdjI5az9yb201ZGFzaXMzMGRiMEElXyo=",
         delayToFade: 1000,
@@ -32,6 +37,7 @@
         sharing: true,
         ads: true,
         autoplay: true,
+        adTagWaterfall: listlinkad,
         adSchedule: {
             preroll: ["http://network.tuoitre.vn/in&v&a&ajUzMDA3bGlFeUk9"],
             midroll: [
@@ -52,9 +58,6 @@
                 controlBarCustomMessage: "The ad by Tuoitre.vn"
             }
         },
-        relatedUpNextOffset: 10,
-        relatedUpNextAutoplay: false,
-        relatedLoc: 'https://www.radiantmediaplayer.com/media/playlist/related.json'
     });
     </script>
 </body>
