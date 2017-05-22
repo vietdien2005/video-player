@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TTO Live</title>
+    <link rel="stylesheet" href="">
+    <style>
+    #rmpPlayer .rmp-module {
+        display: none !important;
+    }
+    </style>
+</head>
+
+<body>
+    <script src="http://static.new.tuoitre.vn/rmp/js/rmp.min.js"></script>
+    <div id="rmpPlayer"></div>
+    <script>
+    var settings = {
+        licenseKey: 'Kl8lNzhlczdvdjI5az9yb201ZGFzaXMzMGRiMEElXyo',
+        bitrates: {
+            hls: 'http://livehls.tuoitre.vn/live/tvolive.m3u8'
+        },
+        delayToFade: 3000,
+        isLive: true,
+        poster: 'http://static.new.tuoitre.vn/logo/logo.png ',
+        pathToRmpFiles: "http://static.new.tuoitre.vn/rmp",
+        iframeMode: true,
+        sharing: true,
+    };
+    var elementID = 'rmpPlayer';
+    var rmp = new RadiantMP(elementID);
+    rmp.init(settings);
+    </script>
+</body>
+
+</html>
